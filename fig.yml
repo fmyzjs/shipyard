@@ -9,24 +9,24 @@ app:
     - db
     - redis
 redis:
-  image: shipyard/redis
+  image: shipyard/docker-shipyard-redis
   ports:
     - "6379"
 router:
-  image: shipyard/router
+  image: shipyard/docker-shipyard-router
   ports:
     - "80"
   links:
     - redis
 lb:
-  image: shipyard/lb
+  image: shipyard/docker-shipyard-lb
   ports:
     - "80:80"
   links:
     - redis
     - router
 db:
-  image: shipyard/db
+  image: shipyard/docker-shipyard-db
   environment:
     DB_USER: shipyard
     DB_PASS: shipyard
